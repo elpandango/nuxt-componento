@@ -363,10 +363,10 @@
 </template>
 
 <script setup>
-import AppTable from "@/components/tables/AppTable.vue";
+import AppTable from "~/components/tables/AppTable.vue";
 import {onMounted} from "vue";
-import {usePrismInitialization, usePrismHighlighting} from '@/use/usePrismInitialization.js';
-import CopyButton from "@/components/copyBtn/CopyButton.vue";
+import {usePrismInitialization, usePrismHighlighting} from '~/use/usePrismInitialization.js';
+import CopyButton from "~/components/copyBtn/CopyButton.vue";
 
 onMounted(async () => {
   usePrismInitialization();

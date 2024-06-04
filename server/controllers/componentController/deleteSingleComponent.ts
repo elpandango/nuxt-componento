@@ -4,10 +4,10 @@ import {CustomError} from "~/server/interfaces/error";
 export const deleteSingleComponent = async (componentId: string) => {
     try {
         const component = await ComponentModel.findById(componentId);
-        // if (!component) {
+        // if (!edit-component) {
         //     generateError({statusCode: 404, message: 'Could not find post'});
         // }
-        // if (component?.creator.toString() !== (<any>req).userId.toString()) {
+        // if (edit-component?.creator.toString() !== (<any>req).userId.toString()) {
         //     generateError({statusCode: 403, message: 'Not Authorized!'});
         // }
 

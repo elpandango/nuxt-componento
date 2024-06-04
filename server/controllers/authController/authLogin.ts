@@ -1,14 +1,22 @@
-import {RequestHandler} from "express";
-import {UserModel} from "../../models/user";
-import {CustomError} from "../../interfaces/error";
-import bcrypt from "bcryptjs";
+import bcrypt from 'bcryptjs';
 import jwt from "jsonwebtoken";
+import {UserModel} from "~/server/models/userModel";
+import {CustomError} from "~/server/interfaces/error";
 
-export const login: RequestHandler = async (req, res, next): Promise<void> => {
-    const email = req.body.email;
-    const password = req.body.password;
+interface AuthLoginParams {
+    email: string;
+    password: string;
+}
+
+interface AuthLoginResponse {
+    status?: number;
+    token?: string;
+    userId?: string;
+    statusCode?: number;
+}
+
+export const authLogin = async ({email, password}: AuthLoginParams): Promise<AuthLoginResponse> => {
     let loadedUser;
-
     try {
         const user = await UserModel.findOne({email: email});
         if (!user) {
@@ -27,18 +35,16 @@ export const login: RequestHandler = async (req, res, next): Promise<void> => {
                 email: loadedUser.email,
                 userId: loadedUser._id.toString()
             }, 'somesupersecretsecret'
-            , {expiresIn: '5h'})
-        res.status(200).json({
+            , {expiresIn: '1y'})
+        return {
+            status: 200,
             token: token,
-            user: user,
             userId: loadedUser._id.toString()
-        });
-        return;
-    } catch (err: any) {
-        if (!err.statusCode) {
-            err.statusCode = 500;
-        }
-        next(err);
-        return err;
+        };
+    } catch (err) {
+        console.log('error: ', err);
+        const error: CustomError = new Error('Internal server error.');
+        error.statusCode = 500;
+        return error;
     }
 };

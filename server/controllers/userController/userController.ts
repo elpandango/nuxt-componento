@@ -1,11 +1,16 @@
-import {UserModel} from '../../models/user';
-import {RequestHandler} from "express";
+import {UserModel} from "~/server/models/userModel";
+import {CustomError} from "~/server/interfaces/error";
 
-export const getCurrentUser: RequestHandler = async (req, res, next): Promise<void> => {
-    const userId = (<any>req).userId;
-    const user = await UserModel.findOne({_id: userId});
-    res.status(200).json({
-        message: 'User successfully fetched.',
-        user: user
-    });
+export const getCurrentUser = async (query: string) => {
+    const user = await UserModel.findOne({email: query?.email});
+    if (user) {
+        return {
+            status: 200,
+            message: 'User successfully fetched.',
+            user: user
+        };
+    }
+    const error: CustomError = new Error('Internal server error.');
+    error.statusCode = 500;
+    return error;
 };

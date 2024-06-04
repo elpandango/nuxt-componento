@@ -1,41 +1,43 @@
 <template>
   <div class="card mb-4">
     <div class="card-content">
-      <div class="title">{{component.title}}</div>
-      <div class="type">Component type: <strong>{{component.type}}</strong></div>
+      <div class="title">{{ component.title }}</div>
+      <div class="type">Component type: <strong>{{ component.type }}</strong></div>
       <div class="content">
-<!--        <CodeBlock :code="component.code" lang="javascript" />-->
-        <Shiki lang="js" code="console.log('hello');" as="span" />
-<!--        <pre>-->
-<!--          <code class="language-html" v-text="component.content.code"></code>-->
-<!--        </pre>-->
+        <ClientOnly>
+<pre>
+<code class="language-html" v-text="component.code"></code>
+</pre>
+        </ClientOnly>
       </div>
       <div class="columns is-mobile has-text-grey-light mt-2">
-        <small class="column">{{dateFormatted}}</small>
+        <small class="column">{{ dateFormatted }}</small>
       </div>
     </div>
     <footer class="card-footer">
       <RouterLink
-          :to="`admin/edit-component/${component._id}`"
-          class="card-footer-item">Edit
+       :to="`/admin/edit-component/${component._id}`"
+       class="card-footer-item">Edit
       </RouterLink>
       <a
-          @click.prevent="handleDeleteClicked"
-          href="#"
-          class="card-footer-item">Delete</a>
+       @click.prevent="handleDeleteClicked"
+       href="#"
+       class="card-footer-item">Delete</a>
     </footer>
-<!--    <ModalDeleteComponent-->
-<!--        v-if="modals.deleteComponent"-->
-<!--        v-model="modals.deleteComponent"-->
-<!--        :componentId="component.id"/>-->
+    <ModalDeleteComponent
+     v-if="modals.deleteComponent"
+     v-model="modals.deleteComponent"
+     :componentId="component._id"
+     @component-deleted="componentDeleted"/>
   </div>
 </template>
 
 <script setup>
 import {computed, reactive} from "vue";
-import { useDateFormat } from '@vueuse/core';
-// import ModalDeleteComponent from "@/components/Blocks/ModalDeleteComponent.vue";
-// import "prismjs/themes/prism-tomorrow.min.css";
+import ModalDeleteComponent from "~/components/admin/Blocks/ModalDeleteComponent.vue";
+import "prismjs/themes/prism-tomorrow.min.css";
+
+const emit = defineEmits(['component-deleted']);
 
 const props = defineProps({
   component: {
@@ -53,20 +55,25 @@ const modals = reactive({
 });
 
 const dateFormatted = computed(() => {
-
-  // console.log(props.component);
-
-  let date = new Date(parseInt(props.component.createdAt));
-  let formattedDate = useDateFormat(date, 'DD-MM-YYYY HH:mm');
-  // return formattedDate.value;
-  return props.component.createdAt;
+  let date = new Date(props.component.createdAt);
+  const day = String(date.getUTCDate()).padStart(2, '0');
+  const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Месяцы начинаются с 0
+  const year = date.getUTCFullYear();
+  const hours = String(date.getUTCHours()).padStart(2, '0');
+  const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+  return `${day}-${month}-${year} / ${hours}:${minutes}`;
 });
+
+const componentDeleted = () => {
+  emit('component-deleted');
+};
 </script>
 
 <style>
 .type {
   margin-bottom: 12px;
 }
+
 .content pre {
   background-color: black;
 }

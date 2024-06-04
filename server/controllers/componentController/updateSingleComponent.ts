@@ -14,10 +14,10 @@ export const updateSingleComponent = async (componentId: string, body: Component
 
     try {
         const component = await ComponentModel.findById(componentId);
-        // if (!component) {
+        // if (!edit-component) {
         //     generateError({statusCode: 404, message: 'Could not find post.'});
         // }
-        // if (component?.creator._id.toString() !== (<any>req).userId.toString()) {
+        // if (edit-component?.creator._id.toString() !== (<any>req).userId.toString()) {
         //     generateError({statusCode: 403, message: 'Not Authorized!'});
         // }
 

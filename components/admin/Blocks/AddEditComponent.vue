@@ -19,11 +19,11 @@
         <select v-model="selectedOption"
                 @change="editorChangeHandler('type', $event.target.value)">
           <option disabled value="">Please select component type</option>
-<!--          <option-->
-<!--              v-for="option in storeComponents.componentTypes"-->
-<!--              :key="option.name"-->
-<!--              :value=option.name>{{ option.name }}-->
-<!--          </option>-->
+          <option
+              v-for="option in componentTypes"
+              :key="option.name"
+              :value=option.name>{{ option.name }}
+          </option>
         </select>
       </div>
     </div>
@@ -49,7 +49,7 @@
 
 <script setup>
 import {ref, reactive, onMounted} from "vue";
-// import {useStoreComponents} from "@/stores/storeComponents.js";
+import repositoryFactory from "~/repositories/repositoryFactory";
 
 const props = defineProps({
   componentData: {
@@ -63,6 +63,7 @@ const props = defineProps({
 });
 const emits = defineEmits(['dataUpdated']);
 
+const componentTypes = ref([]);
 const formInputData = reactive({
   title: '',
   type: '',
@@ -79,6 +80,15 @@ const editorChangeHandler = (inputName, editorContent) => {
   }
 };
 
+try {
+  const data = await repositoryFactory.get('Component').getTypes();
+  if (data) {
+    componentTypes.value = {...data.componentTypes};
+  }
+} catch (err) {
+  console.log(err);
+}
+
 onMounted(() => {
   if (props.componentData) {
     formInputData.title = props.componentData.title;
@@ -87,6 +97,4 @@ onMounted(() => {
     selectedOption.value = props.componentData.type;
   }
 });
-
-// const storeComponents = useStoreComponents();
 </script>

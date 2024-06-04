@@ -266,7 +266,7 @@
 <script setup>
 import {onBeforeUnmount, ref} from "vue";
 import {onMounted} from "vue";
-import {usePrismInitialization, usePrismHighlighting} from '@/use/usePrismInitialization.js';
+import {usePrismInitialization, usePrismHighlighting} from '~/use/usePrismInitialization.js';
 
 const isSkeletonClassActive = ref(true);
 const intervalId = ref(null);

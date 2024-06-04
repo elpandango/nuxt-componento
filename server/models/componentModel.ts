@@ -6,10 +6,10 @@ export interface Component extends Document {
     type: string;
 }
 
-const postSchema = new Schema<Component>({
+const componentSchema = new Schema<Component>({
     title: {type: String, required: true, default: ''},
     code: {type: String, required: true, default: ''},
     type: {type: String, required: true, default: ''},
 }, {timestamps: true});
 
-export const ComponentModel = mongoose.model<Component>('Component', postSchema);
+export const ComponentModel = mongoose.model<Component>('Component', componentSchema);

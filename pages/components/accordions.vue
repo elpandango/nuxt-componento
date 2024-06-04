@@ -121,11 +121,11 @@
 
 <script setup>
 import {reactive, ref} from "vue";
-import Accordion from "@/components/accordions/Accordion.vue";
+import Accordion from "~/components/accordions/Accordion.vue";
 import {onMounted} from "vue";
 import {useStoreComponents} from "@/stores/storeComponents.js";
-import {useDecodeHtmlEntities} from '@/use/useDecodeHtml.js';
-import {usePrismInitialization, usePrismHighlighting} from '@/use/usePrismInitialization.js';
+import {useDecodeHtmlEntities} from '~/use/useDecodeHtml.js';
+import {usePrismInitialization, usePrismHighlighting} from '~/use/usePrismInitialization.js';
 
 const storeComponents = useStoreComponents();
 const components = ref([]);

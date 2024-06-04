@@ -2,7 +2,7 @@ import {fileURLToPath, URL} from "node:url";
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['nuxt-shiki'],
+  modules: ['@pinia/nuxt'],
   nitro: {
     plugins: ["~/server/plugins/mongodb.ts"],
   },
@@ -16,11 +16,4 @@ export default defineNuxtConfig({
       }
     }
   },
-  // css: {
-  //   preprocessorOptions: {
-  //     scss: {
-  //       additionalData: `@import "@/assets/scss/global.scss";`
-  //     }
-  //   }
-  // },
 })

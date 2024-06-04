@@ -4,8 +4,8 @@ import {CustomError} from "~/server/interfaces/error";
 export const getSingleComponent = async (componentId: string) => {
     try {
         const component = await ComponentModel.findById(componentId);
-        // if (!component) {
-        //     generateError({statusCode: 404, message: 'Could not find component.'});
+        // if (!edit-component) {
+        //     generateError({statusCode: 404, message: 'Could not find edit-component.'});
         // }
         return {
             status: 200,

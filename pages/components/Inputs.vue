@@ -180,10 +180,10 @@
 import {reactive, ref} from "vue";
 import {onMounted} from "vue";
 import {useStoreComponents} from "@/stores/storeComponents.js";
-import {useDecodeHtmlEntities} from '@/use/useDecodeHtml.js';
-import {usePrismInitialization, usePrismHighlighting} from '@/use/usePrismInitialization.js';
-import BaseInput from "@/components/inputs/BaseInput.vue";
-import FloatLabelInput from "@/components/inputs/FloatLabelInput.vue";
+import {useDecodeHtmlEntities} from '~/use/useDecodeHtml.js';
+import {usePrismInitialization, usePrismHighlighting} from '~/use/usePrismInitialization.js';
+import BaseInput from "~/components/inputs/BaseInput.vue";
+import FloatLabelInput from "~/components/inputs/FloatLabelInput.vue";
 
 const storeComponents = useStoreComponents();
 const components = ref([]);

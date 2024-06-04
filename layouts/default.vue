@@ -16,7 +16,7 @@
           <ul class="link-sublist">
             <li>
               <router-link
-               to="/components"
+               to="/"
                class="accordion-item"
                active-class="active"
                tag="li">Accordions
@@ -24,7 +24,7 @@
             </li>
             <li>
               <router-link
-               to="/inputs"
+               to="/components/inputs"
                class="accordion-item"
                active-class="active"
                tag="li">Input
@@ -32,7 +32,7 @@
             </li>
             <li>
               <router-link
-               to="/skeletons"
+               to="/components/skeletons"
                class="accordion-item"
                active-class="active"
                tag="li">Skeleton-boxes
@@ -41,7 +41,7 @@
             <li class="accordion-item">Textarea</li>
             <li>
               <router-link
-               to="/buttons"
+               to="/components/buttons"
                class="accordion-item"
                active-class="active"
                tag="li">Button
@@ -63,8 +63,8 @@
 <script setup lang="ts">
 import Sidebar from "~/components/sidebars/Sidebar.vue";
 import Accordion from "~/components/accordions/Accordion.vue";
-
 import '~/assets/scss/global.scss';
+
 </script>
 
 <style

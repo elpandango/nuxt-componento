@@ -1,14 +1,25 @@
 import {ComponentModel} from "~/server/models/componentModel";
 import {CustomError} from "~/server/interfaces/error";
 
-export const getAllComponents = async (currentPage: number, perPage: number) => {
+export const getAllComponents = async (query: string, currentPage: number, perPage: number) => {
     try {
         const totalItems: number = await ComponentModel.find().countDocuments();
-        const components = await ComponentModel.find()
-            // .populate('creator')
-            .sort({createdAt: -1})
-            .skip((currentPage - 1) * perPage)
-            .limit(perPage);
+
+        let components;
+
+        if (query) {
+            components = await ComponentModel.find({
+                type: query
+            })
+                .sort({createdAt: -1})
+                .skip((currentPage - 1) * perPage)
+                .limit(perPage);
+        } else {
+            components = await ComponentModel.find()
+                .sort({createdAt: -1})
+                .skip((currentPage - 1) * perPage)
+                .limit(perPage);
+        }
 
         return {
             status: 200,

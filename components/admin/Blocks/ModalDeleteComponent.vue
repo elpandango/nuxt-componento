@@ -19,7 +19,7 @@
               @click="closeModal"
               class="button">Cancel
           </button>
-          <button @click="storeComponents.deleteComponent(componentId)"
+          <button @click="deleteComponent()"
                   class="button is-danger">Delete</button>
         </div>
       </footer>
@@ -30,7 +30,7 @@
 <script setup>
 import {onClickOutside} from '@vueuse/core';
 import {ref, onMounted, onUnmounted} from "vue";
-import {useStoreComponents} from "@/stores/storeComponents.js";
+import repositoryFactory from "~/repositories/repositoryFactory";
 
 const props = defineProps({
   modelValue: {
@@ -43,9 +43,8 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['update:modelValue']);
-
-const storeComponents = useStoreComponents();
+const emit = defineEmits(['update:modelValue', 'component-deleted']);
+const router = useRouter();
 
 const closeModal = () => {
   emit('update:modelValue', false);
@@ -71,4 +70,9 @@ onUnmounted(() => {
   document.removeEventListener('keyup', handleKeyboard);
 })
 
+const deleteComponent = async() => {
+  await repositoryFactory.get('Component').delete(props.componentId);
+  closeModal();
+  emit('component-deleted');
+};
 </script>
