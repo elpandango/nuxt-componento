@@ -48,7 +48,7 @@
               </router-link>
             </li>
             <li class="accordion-item">Progressbar</li>
-            <li class="accordion-item">Forma</li>
+            <li class="accordion-item">Form</li>
           </ul>
         </template>
       </Accordion>
