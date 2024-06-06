@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1>Skeletons</h1>
-    <p class="mar-b-10">Skeleton is an animated placeholder that displays instead of content during page load. <br/>It mimics the structure of
+    <p class="mar-b-10">Skeleton is an animated placeholder that displays instead of content during page load. <br/>It
+      mimics the structure of
       the content, enhancing the perception of load speed and improving the user experience.</p>
     <div class="demo-block mar-b-10">
       <h3 class="page-subtitle">Basic Skeleton</h3>
@@ -14,11 +15,13 @@
               :class="{'skeleton-box': isSkeletonClassActive}">Title</h2>
         </template>
         <template v-slot:code-slot>
+          <ClientOnly>
 <pre class="default-positioning">
 <code class="language-markup">
 &lt;h2 class="title skeleton-box"&gt;Title&lt;/h2&gt;
 </code>
 </pre>
+          </ClientOnly>
         </template>
       </DemonstrationBox>
     </div>
@@ -33,11 +36,13 @@
               :class="{'skeleton-box-short': isSkeletonClassActive}">Short Title</h2>
         </template>
         <template v-slot:code-slot>
+          <ClientOnly>
 <pre class="default-positioning">
 <code class="language-markup">
 &lt;h2 class="title skeleton-box-short"&gt;Short Title&lt;/h2&gt;
 </code>
 </pre>
+          </ClientOnly>
         </template>
       </DemonstrationBox>
     </div>
@@ -52,11 +57,13 @@
           <div class="skeleton-block"></div>
         </template>
         <template v-slot:code-slot>
+          <ClientOnly>
 <pre class="default-positioning">
 <code class="language-markup">
 &lt;div class="skeleton-block"&gt;&lt;/div&gt;
 </code>
 </pre>
+          </ClientOnly>
         </template>
       </DemonstrationBox>
     </div>
@@ -68,12 +75,22 @@
       <DemonstrationBox>
         <template v-slot:demo-slot>
           <div class="skeleton-block">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore error odit sed tempora. Cupiditate, dolores ducimus eveniet hic id ipsam ipsum labore magnam molestias non porro quasi quibusdam quos rem totam unde voluptate. Ad aliquid assumenda, culpa, deserunt dolores eius eligendi eos ipsa ipsum laborum obcaecati quidem quod repellendus tempora tempore totam voluptatum. At, dicta?
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore error odit sed tempora. Cupiditate, dolores ducimus eveniet hic id ipsam ipsum labore magnam molestias non porro quasi quibusdam quos rem totam unde voluptate. Ad aliquid assumenda, culpa, deserunt dolores eius eligendi eos ipsa ipsum laborum obcaecati quidem quod repellendus tempora tempore totam voluptatum. At, dicta?
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore error odit sed tempora. Cupiditate, dolores ducimus eveniet hic id ipsam ipsum labore magnam molestias non porro quasi quibusdam quos rem totam unde voluptate. Ad aliquid assumenda, culpa, deserunt dolores eius eligendi eos ipsa ipsum laborum obcaecati quidem quod repellendus tempora tempore totam voluptatum. At, dicta?
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore error odit sed tempora. Cupiditate, dolores
+            ducimus eveniet hic id ipsam ipsum labore magnam molestias non porro quasi quibusdam quos rem totam unde
+            voluptate. Ad aliquid assumenda, culpa, deserunt dolores eius eligendi eos ipsa ipsum laborum obcaecati
+            quidem quod repellendus tempora tempore totam voluptatum. At, dicta?
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore error odit sed tempora. Cupiditate, dolores
+            ducimus eveniet hic id ipsam ipsum labore magnam molestias non porro quasi quibusdam quos rem totam unde
+            voluptate. Ad aliquid assumenda, culpa, deserunt dolores eius eligendi eos ipsa ipsum laborum obcaecati
+            quidem quod repellendus tempora tempore totam voluptatum. At, dicta?
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore error odit sed tempora. Cupiditate, dolores
+            ducimus eveniet hic id ipsam ipsum labore magnam molestias non porro quasi quibusdam quos rem totam unde
+            voluptate. Ad aliquid assumenda, culpa, deserunt dolores eius eligendi eos ipsa ipsum laborum obcaecati
+            quidem quod repellendus tempora tempore totam voluptatum. At, dicta?
           </div>
         </template>
         <template v-slot:code-slot>
+          <ClientOnly>
 <pre class="default-positioning">
 <code class="language-markup">
 &lt;div class="skeleton-block"&gt;
@@ -83,6 +100,7 @@
 &lt;/div&gt;
 </code>
 </pre>
+          </ClientOnly>
         </template>
       </DemonstrationBox>
     </div>
@@ -103,6 +121,7 @@
           </div>
         </template>
         <template v-slot:code-slot>
+          <ClientOnly>
 <pre class="default-positioning">
 <code class="language-markup">
 &lt;div class="skeleton-box-lines"&gt;
@@ -113,6 +132,7 @@
 &lt;/div&gt;
 </code>
 </pre>
+          </ClientOnly>
         </template>
       </DemonstrationBox>
     </div>
@@ -150,6 +170,7 @@
           </figure>
         </template>
         <template v-slot:code-slot>
+          <ClientOnly>
 <pre class="default-positioning">
 <code class="language-markup">
 &lt;figure class="image size-16x16 skeleton-box"&gt;
@@ -169,13 +190,14 @@
 &lt;/figure&gt;
 </code>
 </pre>
+          </ClientOnly>
         </template>
       </DemonstrationBox>
     </div>
 
     <div class="demo-block mar-b-10">
       <div class="component-description">
-       You can also use Skeleton-boxes for more complex HTML structures:
+        You can also use Skeleton-boxes for more complex HTML structures:
       </div>
       <DemonstrationBox>
         <template v-slot:demo-slot>
@@ -223,6 +245,7 @@
           </article>
         </template>
         <template v-slot:code-slot>
+          <ClientOnly>
 <pre class="default-positioning">
 <code class="language-markup">
 &lt;article class="article-item"&gt;
@@ -257,6 +280,7 @@
 &lt;/article&gt;
 </code>
 </pre>
+          </ClientOnly>
         </template>
       </DemonstrationBox>
     </div>
@@ -266,7 +290,7 @@
 <script setup>
 import {onBeforeUnmount, ref} from "vue";
 import {onMounted} from "vue";
-import {usePrismInitialization, usePrismHighlighting} from '~/use/usePrismInitialization.js';
+import {usePrismHighlighting} from '~/use/usePrismInitialization.js';
 
 const isSkeletonClassActive = ref(true);
 const intervalId = ref(null);
@@ -277,8 +301,9 @@ const skeletonClassTrigger = () => {
 
 onMounted(async () => {
   intervalId.value = setInterval(skeletonClassTrigger, 3000);
-   usePrismInitialization();
-  usePrismHighlighting();
+  if (process.client) {
+    usePrismHighlighting();
+  }
 });
 
 onBeforeUnmount(() => {

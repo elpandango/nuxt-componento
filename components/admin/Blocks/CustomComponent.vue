@@ -35,7 +35,7 @@
 <script setup>
 import {computed, reactive} from "vue";
 import ModalDeleteComponent from "~/components/admin/Blocks/ModalDeleteComponent.vue";
-import "prismjs/themes/prism-tomorrow.min.css";
+// import "prismjs/themes/prism-tomorrow.min.css";
 
 const emit = defineEmits(['component-deleted']);
 

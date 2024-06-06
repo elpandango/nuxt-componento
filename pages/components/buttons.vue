@@ -17,7 +17,7 @@
           <template v-slot:code-slot>
             <ClientOnly>
 <pre>
-<code class="language-html" v-html="templateComponent.small"></code>
+<code class="language-markup" v-html="templateComponent.small"></code>
 </pre>
             </ClientOnly>
           </template>
@@ -34,7 +34,7 @@
           <template v-slot:code-slot>
             <ClientOnly>
 <pre>
-<code class="language-html" v-html="templateComponent.basic"></code>
+<code class="language-markup" v-html="templateComponent.basic"></code>
 </pre>
             </ClientOnly>
           </template>
@@ -52,7 +52,7 @@
           <template v-slot:code-slot>
             <ClientOnly>
 <pre>
-<code class="language-html" v-html="templateComponent.big"></code>
+<code class="language-markup" v-html="templateComponent.big"></code>
 </pre>
             </ClientOnly>
           </template>
@@ -67,7 +67,7 @@ import {reactive, ref} from "vue";
 import Button from "~/components/buttons/BaseButton.vue";
 import {onMounted} from "vue";
 import {useDecodeHtmlEntities} from '~/use/useDecodeHtml.js';
-import {usePrismInitialization, usePrismHighlighting} from '~/use/usePrismInitialization.js';
+import {usePrismHighlighting} from '~/use/usePrismInitialization.js';
 import repositoryFactory from "~/repositories/repositoryFactory";
 
 const components = ref([]);
@@ -92,7 +92,7 @@ onMounted(async () => {
   components.value = data?.components || [];
   components.value.forEach(component => {
 
-    console.log(component);
+    // console.log(component);
 
     const replacedValue = useDecodeHtmlEntities(component.code);
 
@@ -111,9 +111,9 @@ onMounted(async () => {
         break;
     }
   });
-
-  usePrismInitialization();
-  usePrismHighlighting();
+  if (process.client) {
+    usePrismHighlighting();
+  }
 });
 
 </script>

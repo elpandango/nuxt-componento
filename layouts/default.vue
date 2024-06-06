@@ -64,7 +64,6 @@
 import Sidebar from "~/components/sidebars/Sidebar.vue";
 import Accordion from "~/components/accordions/Accordion.vue";
 import '~/assets/scss/global.scss';
-
 </script>
 
 <style

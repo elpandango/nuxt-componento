@@ -156,7 +156,8 @@ onMounted(async () => {
     }
   });
 
-  usePrismInitialization();
-  usePrismHighlighting();
+  if (process.client) {
+    usePrismHighlighting();
+  }
 });
 </script>

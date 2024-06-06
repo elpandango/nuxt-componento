@@ -1,8 +1,5 @@
-import {fileURLToPath, URL} from "node:url";
-
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@pinia/nuxt'],
   nitro: {
     plugins: ["~/server/plugins/mongodb.ts"],
   },

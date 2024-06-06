@@ -364,14 +364,12 @@
 
 <script setup>
 import AppTable from "~/components/tables/AppTable.vue";
-import {onMounted} from "vue";
-import {usePrismInitialization, usePrismHighlighting} from '~/use/usePrismInitialization.js';
+import {usePrismHighlighting} from '~/use/usePrismInitialization.js';
 import CopyButton from "~/components/copyBtn/CopyButton.vue";
 
-onMounted(async () => {
-  usePrismInitialization();
+if (process.client) {
   usePrismHighlighting();
-});
+}
 </script>
 
 <style

@@ -15,9 +15,11 @@
           <p>Input value: <b>{{ basicSmallInputValue }}</b></p>
         </template>
         <template v-slot:code-slot>
-        <pre>
-        <code class="language-html" v-html="templateComponent.small"></code>
-      </pre>
+          <ClientOnly>
+<pre>
+<code class="language-html" v-html="templateComponent.small"></code>
+</pre>
+          </ClientOnly>
         </template>
       </DemonstrationBox>
     </div>
@@ -30,9 +32,11 @@
           <p>Input value: <b>{{ basicDefaultInputValue }}</b></p>
         </template>
         <template v-slot:code-slot>
-        <pre>
-        <code class="language-html" v-html="templateComponent.basic"></code>
-      </pre>
+          <ClientOnly>
+<pre>
+<code class="language-html" v-html="templateComponent.basic"></code>
+</pre>
+          </ClientOnly>
         </template>
       </DemonstrationBox>
     </div>
@@ -46,9 +50,11 @@
           <p>Input value: <b>{{ basicMediumInputValue }}</b></p>
         </template>
         <template v-slot:code-slot>
-        <pre>
-        <code class="language-html" v-html="templateComponent.medium"></code>
-      </pre>
+          <ClientOnly>
+<pre>
+<code class="language-html" v-html="templateComponent.medium"></code>
+</pre>
+          </ClientOnly>
         </template>
       </DemonstrationBox>
     </div>
@@ -62,9 +68,11 @@
           <p>Input value: <b>{{ basicBigInputValue }}</b></p>
         </template>
         <template v-slot:code-slot>
-        <pre>
-        <code class="language-html" v-html="templateComponent.big"></code>
-      </pre>
+          <ClientOnly>
+<pre>
+<code class="language-html" v-html="templateComponent.big"></code>
+</pre>
+          </ClientOnly>
         </template>
       </DemonstrationBox>
     </div>
@@ -83,9 +91,11 @@
           />
         </template>
         <template v-slot:code-slot>
-        <pre>
-        <code class="language-html" v-html="templateComponent.success"></code>
-      </pre>
+          <ClientOnly>
+<pre>
+<code class="language-html" v-html="templateComponent.success"></code>
+</pre>
+          </ClientOnly>
         </template>
       </DemonstrationBox>
     </div>
@@ -99,9 +109,11 @@
           />
         </template>
         <template v-slot:code-slot>
-        <pre>
-        <code class="language-html" v-html="templateComponent.info"></code>
-      </pre>
+          <ClientOnly>
+<pre>
+<code class="language-html" v-html="templateComponent.info"></code>
+</pre>
+          </ClientOnly>
         </template>
       </DemonstrationBox>
     </div>
@@ -115,9 +127,11 @@
                      error-message="Oops, something went wrong"/>
         </template>
         <template v-slot:code-slot>
-        <pre>
-        <code class="language-html" v-html="templateComponent.error"></code>
-      </pre>
+          <ClientOnly>
+<pre>
+<code class="language-html" v-html="templateComponent.error"></code>
+</pre>
+          </ClientOnly>
         </template>
       </DemonstrationBox>
     </div>
@@ -131,9 +145,11 @@
           />
         </template>
         <template v-slot:code-slot>
-        <pre>
-        <code class="language-html" v-html="templateComponent.warning"></code>
-      </pre>
+          <ClientOnly>
+<pre>
+<code class="language-html" v-html="templateComponent.warning"></code>
+</pre>
+          </ClientOnly>
         </template>
       </DemonstrationBox>
     </div>
@@ -150,9 +166,11 @@
                            label="Input with float label"/>
         </template>
         <template v-slot:code-slot>
-        <pre>
-        <code class="language-html" v-html="templateComponent.basicFloat"></code>
-      </pre>
+          <ClientOnly>
+<pre>
+<code class="language-html" v-html="templateComponent.basicFloat"></code>
+</pre>
+          </ClientOnly>
         </template>
       </DemonstrationBox>
     </div>
@@ -166,9 +184,11 @@
                            label="Large input with float label"/>
         </template>
         <template v-slot:code-slot>
-        <pre>
-        <code class="language-html" v-html="templateComponent.bigFloat"></code>
-      </pre>
+          <ClientOnly>
+<pre>
+<code class="language-html" v-html="templateComponent.bigFloat"></code>
+</pre>
+          </ClientOnly>
         </template>
       </DemonstrationBox>
     </div>
@@ -179,13 +199,12 @@
 <script setup>
 import {reactive, ref} from "vue";
 import {onMounted} from "vue";
-import {useStoreComponents} from "@/stores/storeComponents.js";
 import {useDecodeHtmlEntities} from '~/use/useDecodeHtml.js';
-import {usePrismInitialization, usePrismHighlighting} from '~/use/usePrismInitialization.js';
+import {usePrismHighlighting} from '~/use/usePrismInitialization.js';
 import BaseInput from "~/components/inputs/BaseInput.vue";
 import FloatLabelInput from "~/components/inputs/FloatLabelInput.vue";
+import repositoryFactory from "~/repositories/repositoryFactory";
 
-const storeComponents = useStoreComponents();
 const components = ref([]);
 
 let templateComponent = reactive({
@@ -227,11 +246,12 @@ const basicFloatInputValue = ref('');
 const bigFloatInputValue = ref('');
 
 onMounted(async () => {
-  components.value = storeComponents.getComponentByType('input');
+  const data = await repositoryFactory.get('Component').get('input');
+  components.value = data?.components || [];
   components.value.forEach(component => {
-    const replacedValue = useDecodeHtmlEntities(component.content.code);
+    const replacedValue = useDecodeHtmlEntities(component.code);
 
-    switch (component.content.title) {
+    switch (component.title) {
       case ComponentType.Basic:
         templateComponent.basic = replacedValue;
         break;
@@ -265,7 +285,8 @@ onMounted(async () => {
     }
   });
 
-  usePrismInitialization();
-  usePrismHighlighting();
+  if (process.client) {
+    usePrismHighlighting();
+  }
 });
 </script>
