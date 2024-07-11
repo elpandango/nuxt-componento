@@ -367,6 +367,19 @@ import AppTable from "~/components/tables/AppTable.vue";
 import {usePrismHighlighting} from '~/use/usePrismInitialization.js';
 import CopyButton from "~/components/copyBtn/CopyButton.vue";
 
+useSeoMeta({
+  title: 'Color Palette page',
+  description: 'This is a Color Palette page',
+  ogTitle: 'Color Palette page',
+  ogDescription: '[og:description]',
+  ogImage: '[og:image]',
+  ogUrl: '[og:url]',
+  twitterTitle: 'Main page',
+  twitterDescription: '[twitter:description]',
+  twitterImage: '[twitter:image]',
+  twitterCard: 'summary'
+});
+
 if (process.client) {
   usePrismHighlighting();
 }
