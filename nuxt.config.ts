@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   nitro: {
     plugins: ["~/server/plugins/mongodb.ts"],
   },
+  app: {
+    pageTransition: {name: 'page', mode: 'out-in'}
+  },
   css: ['@/assets/scss/global.scss'],
   vite: {
     css: {
