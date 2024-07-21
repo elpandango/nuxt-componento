@@ -16,7 +16,7 @@
           <ul class="link-sublist">
             <li>
               <router-link
-               to="/"
+               to="/components/accordions"
                class="accordion-item"
                active-class="active"
                tag="li">Accordions

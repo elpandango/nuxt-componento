@@ -1,8 +1,8 @@
 <template>
   <NuxtLayout>
     <section>
-
-    {{ props }}
+      <h1>Oops!</h1>
+      <h3>{{ props.error.message }}</h3>
     </section>
   </NuxtLayout>
 </template>
