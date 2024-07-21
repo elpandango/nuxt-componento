@@ -91,9 +91,6 @@ onMounted(async () => {
   const data = await repositoryFactory.get('Component').get('button');
   components.value = data?.components || [];
   components.value.forEach(component => {
-
-    // console.log(component);
-
     const replacedValue = useDecodeHtmlEntities(component.code);
 
     switch (component.title) {

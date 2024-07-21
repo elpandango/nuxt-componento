@@ -123,11 +123,10 @@
 import {reactive, ref} from "vue";
 import Accordion from "~/components/accordions/Accordion.vue";
 import {onMounted} from "vue";
-import {useStoreComponents} from "@/stores/storeComponents.js";
 import {useDecodeHtmlEntities} from '~/use/useDecodeHtml.js';
-import {usePrismInitialization, usePrismHighlighting} from '~/use/usePrismInitialization.js';
+import {usePrismHighlighting} from '~/use/usePrismInitialization.js';
+import repositoryFactory from "~/repositories/repositoryFactory";
 
-const storeComponents = useStoreComponents();
 const components = ref([]);
 
 let templateComponent = reactive({
@@ -142,7 +141,11 @@ const ComponentType = {
 };
 
 onMounted(async () => {
-  components.value = storeComponents.getComponentByType('accordion');
+  const data = await repositoryFactory.get('Component').get('accordion');
+
+  console.log(data);
+
+  components.value = data?.components || [];
   components.value.forEach(component => {
     const replacedValue = useDecodeHtmlEntities(component.content.code);
 
