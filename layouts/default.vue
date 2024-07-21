@@ -7,6 +7,11 @@
                    to="/color-palette">Color Palette
       </router-link>
 
+      <router-link class="sidebar-link"
+                   active-class="active"
+                   to="/home-page">About Project
+      </router-link>
+
       <Accordion height="32px"
                  is-active-on-init="true">
         <template v-slot:header>

@@ -19,7 +19,7 @@
 
       <div class="btn-block">
         <RouterLink
-         :to="{name: 'Components'}"
+         to="/"
          class="btn-default">To Components List
         </RouterLink>
       </div>

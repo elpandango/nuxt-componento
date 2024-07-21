@@ -4,10 +4,6 @@
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-
-    <div class="test" attr="test"></div>
-
-    
   </div>
 </template>
 
